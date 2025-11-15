@@ -19,7 +19,6 @@ const InlineCheckoutForm: React.FC<InlineCheckoutFormProps> = ({ productName }) 
         setStatus('loading');
         setMessage('');
 
-        // Simulate API call for lead generation
         await new Promise(resolve => setTimeout(resolve, 1500));
 
         if (email && email.includes('@')) {
@@ -45,10 +44,10 @@ const InlineCheckoutForm: React.FC<InlineCheckoutFormProps> = ({ productName }) 
                 />
                 <button
                     type="submit"
-                    className="bg-secondary hover:bg-secondary-dark text-white font-bold py-3 px-6 rounded-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary disabled:bg-opacity-50 disabled:cursor-not-allowed"
+                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-opacity-50 disabled:cursor-not-allowed"
                     disabled={status === 'loading'}
                 >
-                    {status === 'loading' ? 'Enviando...' : 'Começar Agora'}
+                    {status === 'loading' ? 'Enviando...' : 'Teste Grátis Agora'}
                 </button>
             </div>
             {message && (
@@ -56,6 +55,7 @@ const InlineCheckoutForm: React.FC<InlineCheckoutFormProps> = ({ productName }) 
                     {message}
                 </p>
             )}
+            <p className="mt-2 text-xs text-neutral-500">7 dias de experimentação sem compromisso</p>
         </form>
     );
 };
@@ -63,84 +63,81 @@ const InlineCheckoutForm: React.FC<InlineCheckoutFormProps> = ({ productName }) 
 // --- SECTIONS ---
 
 const HeroSection: React.FC = () => (
-    <section className="py-20 md:py-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-12 items-center">
-                <div className="text-center max-w-3xl">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
-                        Transforme Sua Produtividade com a <span className="text-primary dark:text-primary-light">Ferramenta Certa</span>
-                    </h1>
-                    <p className="mt-4 text-lg md:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
-                        Organize tarefas, colabore com sua equipe e alcance seus objetivos mais rápido. Tudo em um só lugar.
-                    </p>
-                    <div className="max-w-xl mx-auto">
-                        <InlineCheckoutForm productName="Produto Principal" />
-                    </div>
-                    <p className="mt-3 text-xs text-neutral-500">Teste por 7 dias grátis. Cancele quando quiser.</p>
-                </div>
+    <section className="py-20 md:py-32 text-center bg-neutral-100 dark:bg-neutral-900">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-neutral-900 dark:text-white">
+                Automatize seu WhatsApp <br /> sem perder a conexão humana
+            </h1>
+            <p className="mt-5 text-lg md:text-xl text-neutral-600 dark:text-neutral-300">
+                Dispare áudios humanizados e funis inteligentes que transformam seu atendimento em uma experiência pessoal e escalável.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+                <InlineCheckoutForm productName="ZapVoice" />
+                <Link to="/video" className="text-green-600 font-medium hover:underline">
+                    Veja a Demonstração
+                </Link>
+            </div>
+            <div className="mt-10 text-neutral-500 dark:text-neutral-400 text-sm">
+                <p>💼 +500 empresas atendidas • 💬 98% de satisfação • ⚙️ Automatize até 70% das interações</p>
             </div>
         </div>
     </section>
 );
 
+const SocialProofSection: React.FC = () => (
+    <section className="py-16 bg-white dark:bg-neutral-800 text-center">
+        <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-neutral-500 dark:text-neutral-400">
+                <span>🧩 Extensão Oficial do Chrome</span>
+                <span>🏆 Certificado de Inovação</span>
+                <span>💬 Destaque no TechNews</span>
+                <span>🌟 Prêmio Humanização Digital</span>
+            </div>
+            <div className="mt-10 max-w-3xl mx-auto">
+                <p className="italic text-neutral-700 dark:text-neutral-300 text-lg">
+                    "O ZapVoice revolucionou nossa comunicação – nossos clientes agora se sentem realmente atendidos, e nossa taxa de conversão disparou em poucas semanas."
+                </p>
+                <p className="mt-3 font-semibold">— Carlos Almeida, Gerente de Vendas</p>
+                <p className="text-sm text-neutral-500">+35% de aumento nas conversões</p>
+            </div>
+        </div>
+    </section>
+);
 
-const BenefitsSection: React.FC = () => {
+const CoreBenefitsSection: React.FC = () => {
     const benefits = [
         {
-            icon: <ZapIcon className="h-8 w-8 text-primary" />,
-            title: 'Performance Rápida',
-            description: 'Nossa infraestrutura otimizada garante velocidade e responsividade incomparáveis.'
+            icon: '🎤',
+            title: 'Áudios com Toque Humano',
+            description: 'Envie mensagens pré-gravadas que simulam gravação ao vivo, assegurando proximidade e autenticidade na comunicação.',
+            cta: 'Saiba como funciona',
         },
         {
-            icon: <ShieldIcon className="h-8 w-8 text-primary" />,
-            title: 'Segurança de Ponta',
-            description: 'Seus dados estão protegidos com as mais modernas tecnologias de segurança.'
+            icon: '🔄',
+            title: 'Funis Inteligentes Automatizados',
+            description: 'Configure sequências de mensagens com gatilhos automáticos que garantem respostas ágeis no momento certo.',
+            cta: 'Ver os funis',
         },
         {
-            icon: <CheckCircleIcon className="h-8 w-8 text-primary" />,
-            title: 'Fácil de Usar',
-            description: 'Interface intuitiva e amigável que não requer curva de aprendizado.'
-        }
+            icon: '⚡',
+            title: 'Integração Simplificada',
+            description: 'Instale a extensão do Chrome em poucos cliques e comece a personalizar seu atendimento sem complicações.',
+            cta: 'Veja a instalação',
+        },
     ];
     return (
-        <section id="benefits" className="py-20 bg-neutral-200 dark:bg-neutral-800">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-neutral-200 dark:bg-neutral-800">
+            <div className="container mx-auto px-4 text-center">
+                <h2 className="text-3xl font-bold mb-12">Benefícios</h2>
                 <div className="grid md:grid-cols-3 gap-12">
-                     {benefits.map(benefit => (
-                         <div key={benefit.title} className="flex items-start">
-                             <div className="flex-shrink-0 bg-primary/10 p-3 rounded-full">{benefit.icon}</div>
-                             <div className="ml-4">
-                                 <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                                 <p className="mt-1 text-neutral-600 dark:text-neutral-400">{benefit.description}</p>
-                             </div>
-                         </div>
-                     ))}
-                </div>
-            </div>
-        </section>
-    );
-};
-
-const TestimonialsSection: React.FC = () => {
-    const scrollContainer = useRef<HTMLDivElement>(null);
-    return (
-        <section id="testimonials" className="py-20 overflow-hidden">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center">
-                    <h2 className="text-3xl font-bold tracking-tight">O que nossos clientes dizem</h2>
-                    <p className="mt-2 text-lg text-neutral-600 dark:text-neutral-400">Confiança construída com resultados.</p>
-                </div>
-                <div ref={scrollContainer} className="mt-12 flex space-x-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
-                    {TESTIMONIALS.map((testimonial, index) => (
-                        <div key={index} className="snap-center flex-shrink-0 w-80 md:w-96 bg-neutral-100 dark:bg-neutral-800 p-6 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700">
-                            <p className="text-neutral-600 dark:text-neutral-300 italic">"{testimonial.quote}"</p>
-                            <div className="flex items-center mt-4">
-                                <img src={testimonial.avatarUrl} alt={testimonial.author} className="h-12 w-12 rounded-full object-cover" />
-                                <div className="ml-4">
-                                    <p className="font-semibold">{testimonial.author}</p>
-                                    <p className="text-sm text-neutral-500">{testimonial.role}</p>
-                                </div>
-                            </div>
+                    {benefits.map(b => (
+                        <div key={b.title} className="p-6 rounded-lg bg-white dark:bg-neutral-900 shadow-lg">
+                            <div className="text-4xl mb-4">{b.icon}</div>
+                            <h3 className="text-xl font-semibold">{b.title}</h3>
+                            <p className="mt-2 text-neutral-600 dark:text-neutral-400">{b.description}</p>
+                            <Link to="/detalhes" className="mt-4 inline-block text-primary font-semibold hover:underline">
+                                {b.cta}
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -149,26 +146,157 @@ const TestimonialsSection: React.FC = () => {
     );
 };
 
-const CTASection: React.FC = () => (
-    <section id="cta" className="py-20 bg-primary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-extrabold text-white">Quer Conhecer Todos os Detalhes?</h2>
-            <p className="mt-2 text-lg text-cyan-100 max-w-2xl mx-auto">Explore nossa página completa e descubra como podemos revolucionar seu fluxo de trabalho.</p>
-            <Link to="/landing" className="mt-8 inline-block bg-white text-primary font-bold py-3 px-8 rounded-md transition-transform transform hover:scale-105 shadow-lg">
-                Ver a Solução Completa
-            </Link>
+const HowItWorksSection: React.FC = () => (
+    <section className="py-20 bg-white dark:bg-neutral-900 text-center">
+        <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-10">Como Escalar Seu Atendimento em 3 Passos</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 className="text-lg font-semibold mb-2">1️⃣ Adicione ao Chrome</h3>
+                    <p className="text-neutral-600 dark:text-neutral-400">Baixe e instale a extensão oficial do ZapVoice com apenas um clique.</p>
+                </div>
+                <div>
+                    <h3 className="text-lg font-semibold mb-2">2️⃣ Configure Funis & Mensagens</h3>
+                    <p className="text-neutral-600 dark:text-neutral-400">Personalize áudios, ative gatilhos e programe follow-ups.</p>
+                </div>
+                <div>
+                    <h3 className="text-lg font-semibold mb-2">3️⃣ Envie e Monitore</h3>
+                    <p className="text-neutral-600 dark:text-neutral-400">Acompanhe resultados e otimize seu atendimento em tempo real.</p>
+                </div>
+            </div>
+            <p className="mt-10 font-semibold text-primary">Transforme seu atendimento com eficiência e humanização.</p>
         </div>
     </section>
 );
 
+const MidCTASection: React.FC = () => (
+    <section id="mid-cta" className="py-16 bg-green-500 text-center text-white">
+        <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold">Pronto para transformar seu atendimento?</h2>
+            <p className="mt-3">Já imaginou seu WhatsApp trabalhando por você?</p>
+            <Link to="/teste" className="mt-6 inline-block bg-white text-green-600 font-bold py-3 px-8 rounded-md hover:bg-neutral-100 transition-transform transform hover:scale-105">
+                Quero Testar
+            </Link>
+            <p className="mt-3 text-sm">Experimente 7 dias grátis – sem necessidade de cartão</p>
+        </div>
+    </section>
+);
+
+const ComparisonSection: React.FC = () => (
+    <section className="py-20 bg-neutral-100 dark:bg-neutral-900 text-center">
+        <div className="container mx-auto px-4 max-w-3xl">
+            <h2 className="text-3xl font-bold mb-10">Por que o ZapVoice é diferente?</h2>
+            <table className="w-full text-left border-collapse border border-neutral-300 dark:border-neutral-700">
+                <tbody>
+                    <tr className="border-b border-neutral-300 dark:border-neutral-700">
+                        <td className="p-3">❌ Mensagens automatizadas frias</td>
+                        <td className="p-3">✅ Áudios humanizados sem etiqueta “encaminhado”</td>
+                    </tr>
+                    <tr className="border-b border-neutral-300 dark:border-neutral-700">
+                        <td className="p-3">❌ Falta de personalização</td>
+                        <td className="p-3">✅ Funis inteligentes com personalização avançada</td>
+                    </tr>
+                    <tr>
+                        <td className="p-3">❌ Integração complexa</td>
+                        <td className="p-3">✅ Instalação simples via extensão do Chrome</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+);
+
+const TestimonialsGridSection: React.FC = () => (
+    <section id="testimonials" className="py-20 bg-white dark:bg-neutral-800 text-center">
+        <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-10">O que nossos clientes dizem</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+                {[
+                    { q: 'Conseguimos iniciar negociações logo nas primeiras horas de uso. A agilidade é surpreendente!', a: '— Fernanda Souza, SDR' },
+                    { q: 'Reduzimos o tempo de resposta e nossa taxa de fechamento aumentou em 30%.', a: '— Ricardo Lima, Gerente de Vendas' },
+                    { q: 'Eu achava que a automatização comprometia a proximidade com o cliente. Me provou o contrário!', a: '— Mariana Silva, Consultora de Vendas' },
+                    { q: 'Eu tinha receio de parecer robótica, mas os áudios humanizados conquistaram meu público.', a: '— João Pereira, Infoprodutor' },
+                    { q: 'Transformou totalmente nossa estratégia de atendimento, gerando crescimento de 50%.', a: '— Luana Martins, Gerente Comercial' },
+                    { q: 'Escalamos atendimento sem perder a essência humana.', a: '— Gustavo Andrade, CEO' },
+                ].map((t, i) => (
+                    <div key={i} className="p-6 rounded-lg bg-neutral-100 dark:bg-neutral-900 shadow">
+                        <p className="text-yellow-500 mb-2">★★★★★</p>
+                        <p className="italic text-neutral-700 dark:text-neutral-300">{t.q}</p>
+                        <p className="mt-3 text-sm text-neutral-500">{t.a}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+const FAQSection: React.FC = () => {
+    const faqs = [
+        {
+            q: 'O ZapVoice funciona em todos os navegadores?',
+            a: 'A solução foi desenvolvida especificamente como extensão para o Google Chrome, garantindo máxima compatibilidade e performance.',
+        },
+        {
+            q: 'Como os áudios se tornam mais humanizados?',
+            a: 'Os áudios são previamente gravados e enviados simulando “gravando áudio…”, gerando uma experiência autêntica.',
+        },
+        {
+            q: 'Preciso de conhecimentos técnicos para instalar?',
+            a: 'Não! A instalação é simples e sem configurações complicadas.',
+        },
+        {
+            q: 'E se eu quiser cancelar a assinatura?',
+            a: 'Você pode cancelar a qualquer momento, direto na plataforma Eduzz.',
+        },
+        {
+            q: 'Existe suporte pós-instalação?',
+            a: 'Sim, suporte disponível via WhatsApp sempre que necessário.',
+        },
+    ];
+    return (
+        <section className="py-20 bg-neutral-100 dark:bg-neutral-900 text-center">
+            <div className="container mx-auto px-4 max-w-3xl">
+                <h2 className="text-3xl font-bold mb-10">Dúvidas Frequentes</h2>
+                <div className="space-y-6 text-left">
+                    {faqs.map((f, i) => (
+                        <div key={i}>
+                            <h3 className="font-semibold">{f.q}</h3>
+                            <p className="text-neutral-600 dark:text-neutral-400">{f.a}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const FinalCTASection: React.FC = () => (
+    <section id="cta" className="py-20 bg-green-600 text-center text-white">
+        <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold">Não perca mais vendas – transforme seu atendimento agora!</h2>
+            <p className="mt-2 text-lg text-green-100">Agilize e humanize suas interações no WhatsApp com o ZapVoice.</p>
+            <Link to="/assinatura" className="mt-8 inline-block bg-white text-green-600 font-bold py-4 px-10 rounded-md transition-transform transform hover:scale-105 shadow-lg">
+                Assine Já →
+            </Link>
+            <div className="mt-5 text-sm text-green-100">
+                <p>✅ Garantia de satisfação • 💬 Suporte via WhatsApp • 🌐 Comunidade ativa</p>
+            </div>
+        </div>
+    </section>
+);
 
 const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection />
-      <BenefitsSection />
-      <TestimonialsSection />
-      <CTASection />
+      <SocialProofSection />
+      <CoreBenefitsSection />
+      <HowItWorksSection />
+      <MidCTASection />
+      <ComparisonSection />
+      <TestimonialsGridSection />
+      <FAQSection />
+      <FinalCTASection />
     </>
   );
 };
